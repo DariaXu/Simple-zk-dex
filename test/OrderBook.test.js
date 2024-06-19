@@ -1,4 +1,4 @@
-const Orderbook = artifacts.require("Orderbook");
+const Orderbook = artifacts.require("OrderBook");
 const Token1 = artifacts.require("Token1");
 const Token2 = artifacts.require("Token2");
 
