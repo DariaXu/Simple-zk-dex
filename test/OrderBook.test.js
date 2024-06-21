@@ -28,7 +28,7 @@ contract("Orderbook", async (accounts) => {
     await quoteToken.transfer(trader2, 1000);
   });
 
-  // Test case: Placing a buy order
+  // // Test case: Placing a buy order
   it("should place a buy order and match with existing sell orders", async () => {
     // Approve the Orderbook to spend quote tokens for trader1
     await quoteToken.approve(orderbook.address, 100, {
@@ -121,6 +121,16 @@ contract("Orderbook", async (accounts) => {
       { from: trader1 }
     );
 
+    // const orders = await orderbook.getAskOrder();
+    // orders.forEach((order, index) => {
+    //     console.log(`Sell Order1 ${index} - ID: ${order.id}, Trader: ${order.trader}, quantity: ${order.quantity}`);
+    // });
+
+    // const orders0 = await orderbook.getBidOrder();
+    // orders0.forEach((order, index) => {
+    //     console.log(`Buy Order1 ${index} - ID: ${order.id}, Trader: ${order.trader}, quantity: ${order.quantity}`);
+    // });
+
     // Place a sell order for 5 base tokens from trader2
     const result = await orderbook.placeSellOrder(
       10,
@@ -129,7 +139,17 @@ contract("Orderbook", async (accounts) => {
       quoteToken.address,
       { from: trader2 }
     );
+    // const orders1 = await orderbook.getAskOrder();
+    // orders1.forEach((order, index) => {
+    //     console.log(`Ask Order ${index} - ID: ${order.id}, Trader: ${order.trader}, quantity: ${order.quantity}`);
+    // });
 
+    // const orders2 = await orderbook.getBidOrder();
+    // orders2.forEach((order, index) => {
+    //     console.log(`Buy Order ${index} - ID: ${order.id}, Trader: ${order.trader}, quantity: ${order.quantity}`);
+    // });
+
+    
     // Verify that the sell order is matched and partially fulfills the buy order
     assert.equal(result.logs[0].event, "TradeExecuted");
     assert.equal(result.logs[0].args.buyer, trader1);
@@ -150,7 +170,7 @@ contract("Orderbook", async (accounts) => {
       10,
       10,
       baseToken.address,
-      quoteToken.address,
+      quoteToken.address, 
       { from: trader1 }
     );
 

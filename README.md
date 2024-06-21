@@ -1,6 +1,8 @@
 # Orderbook Smart Contract: Creating an ERC20-Compatible DEX on Ethereum
 
 This repo contains details building an ERC20-compatible orderbook smart contract on Ethereum, including fundamental concepts, writing, testing, and deployment. There is a [blog post](https://nzouat.com/orderbook-smart-contract-creating-an-erc20-compatible-dex-on-ethereum/) attached to this repo that explain how it works in details.
+0.简单的order book dex，可以完成unit test
+1. rust sc monitor events emit by dex .....
 
 ## CORE CONCEPTS OF AN ORDERBOOK
 

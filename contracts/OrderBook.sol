@@ -120,7 +120,7 @@ contract OrderBook {
         // Insert the sell order and match it with compatible buy orders
 
         Order memory newOrder = Order({
-            id: askOrders.length,
+            id: askOrders.length, // the index of this order in the ask array
             trader: msg.sender,
             isBuyOrder: false,
             price: price,
@@ -295,7 +295,7 @@ contract OrderBook {
                 // Emit the TradeExecuted event
                 emit TradeExecuted(
                     buyOrder.id,
-                    i,
+                    sellOrderId, // fixed
                     buyOrder.trader,
                     sellOrder.trader,
                     sellOrder.price,
@@ -315,6 +315,14 @@ contract OrderBook {
     function getAskOrderIndex(uint256 orderId) public view returns (uint256) {
         require(orderId < askOrders.length, "Order ID out of range");
         return orderId;
+    }
+
+    function getAskOrder() public view returns (Order[] memory) {
+        return askOrders;
+    }
+
+    function getBidOrder() public view returns (Order[] memory) {
+        return bidOrders;
     }
 
     // Helper function to find the minimum of two values
